@@ -15,7 +15,7 @@ myadaboost <- function (niter,depth,rcontrol,train,test) {
     stump <- rpart(Outcome ~ .,data=train,weights=weights0
                    ,control=rcontrol
     )
-    pred <- predict(stump)[,2] %>% round()
+    pred <- predict(stump,train)[,2] %>% round()
     
     # record this tree's votes on the test set
     votes[,i] <- predict(stump,test)[,2] %>% round()
